@@ -1,0 +1,126 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji</title>
+    <link rel="stylesheet" href="./style.css">
+    <script>
+	const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    console.log({ clientX, clientY });
+
+    //0 - 1
+    const { innerWidth, innerHeight } = window;
+    const fractionX = clientX / innerWidth; //0 - 1
+    const fractionY = clientY / innerHeight; //0 - 1
+
+    console.log({ fractionX, fractionY  });
+
+    const pupilX = -70 + fractionX * 100;
+    const pupilY = -70 + fractionY * 100;
+
+    console.log({ pupilX, pupilY });
+
+    document.querySelectorAll('.pupil')
+    .forEach(el => {
+        el.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+    })
+	  document.querySelectorAll('.lips')
+    .forEach(el => {
+        el.style.transform = `translate(${pupilX}px, ${fractionX}px)`;
+    })
+
+
+}
+
+window.addEventListener('mousemove', handleMouseMove);
+	</script>
+	<style type='text/css'>
+	*{
+    margin: 0;
+    padding: 0;
+
+}
+body{
+    background-color: #333;
+	background-image:url('https://o.remove.bg/downloads/9c54217c-8b1e-4ac1-8c27-92283d66a341/mahi2-removebg-preview.png');
+ background-position: 45% 56%;
+ background-size: 500px 500px;
+ background-repeat:no-repeat;
+}
+.text{
+color:white;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+.face{
+    width: 400px;
+    height: 400px;
+    background: orange;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -250px;
+}
+.eye{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    top: 100px;
+    overflow: hidden;
+}
+
+.eye:nth-child(1){
+    left: 30px;
+}
+.eye:nth-child(2){
+    right:30px;
+}
+
+.pupil{
+    width: 50px;
+    height: 50px;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -25px;
+    margin-top: -25px;
+}
+
+.lips{
+    width: 250px;
+    height: 250px;
+    background: transparent;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    margin-left: -100px;
+    border: 5px solid #000;
+    border-color: transparent transparent #000 transparent;
+}
+
+	</style>
+</head>
+<body>
+<h1 class='text'>Mahi when someone moves around</h1>
+    <section class="face">
+        <div class="eye">
+            <div class="pupil"></div>
+        </div>
+        <div class="eye">
+            <div class="pupil"></div>
+        </div>
+        <div class="lips"></div>
+    </section>
+    
+</body>
+</html>
